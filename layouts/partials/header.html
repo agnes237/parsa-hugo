@@ -1,6 +1,12 @@
 <header class="navigation">
   <nav class="navbar navbar-expand-lg navbar-light">
-    <a class="navbar-brand" href="{{site.BaseURL}}"><img class="img-fluid" src="{{ site.Params.logo | absURL }}" alt="{{site.Title}}"></a>
+    <a class="navbar-brand" href="{{site.BaseURL}}">
+      {{ if site.Params.logo }}
+      <img class="img-fluid" src="{{ site.Params.logo | absURL }}" alt="{{site.Title}}">
+      {{ else }}
+      {{ site.Title }}
+      {{ end }}
+    </a>
     <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navogation"
       aria-controls="navogation" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -17,13 +23,13 @@
           </a>
           <div class="dropdown-menu" >
             {{ range .Children }}
-            <a class="dropdown-item" href="{{ .URL | absURL }}">{{ .Name }}</a>
+            <a class="dropdown-item" href="{{ .URL }}">{{ .Name }}</a>
             {{ end }}
           </div>
         </li>
         {{ else }}
         <li class="nav-item">
-          <a class="nav-link text-uppercase text-dark" href="{{ .URL | absURL }}">{{ .Name }}</a>
+          <a class="nav-link text-uppercase text-dark" href="{{ .URL }}">{{ .Name }}</a>
         </li>
         {{ end }}
         {{ end }}

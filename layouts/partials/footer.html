@@ -3,7 +3,13 @@
     <div class="container">
       <div class="row">
         <div class="col-md-3 col-sm-6 mb-4 mb-md-0">
-          <a href="{{site.BaseURL}}"><img src="{{site.Params.logo | absURL }}" alt="{{site.Title}}" class="img-fluid"></a>
+          <a href="{{site.BaseURL}}">
+            {{ if site.Params.logo }}
+            <img src="{{site.Params.logo | absURL }}" alt="{{site.Title}}" class="img-fluid">
+            {{ else }}
+            {{ site.Title }}
+            {{ end }}
+          </a>
         </div>
         <div class="col-md-3 col-sm-6 mb-4 mb-md-0">
           {{ if .Site.Params.address }}
@@ -15,7 +21,7 @@
         </div>
         <div class="col-md-3 col-sm-6 mb-4 mb-md-0">
           {{ if or  .Site.Params.mobile  .Site.Params.email }}         
-          <h6>Contact Info</h6>
+          <h6 id="contact">Contact Info</h6>
           <ul class="list-unstyled">
             {{ if .Site.Params.mobile }}
             <li class="font-secondary text-dark">Tel : {{ .Site.Params.mobile | markdownify }}</li>
@@ -30,7 +36,7 @@
           <h6>Follow</h6>
           <ul class="list-inline d-inline-block">
             {{ range site.Params.social }}
-            <li class="list-inline-item"><a href="{{ .URL }}" class="text-dark"><i class="{{ .icon }}"></i></a></li>
+            <li class="list-inline-item"><a href="{{ .url }}" class="text-dark"><i class="{{ .icon }}"></i></a></li>
             {{ end }}
           </ul>
         </div>
